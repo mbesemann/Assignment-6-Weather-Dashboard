@@ -114,8 +114,6 @@ function saveCity(city) {
 $("form").on("submit", function(e) {
     e.preventDefault();
     saveCity($("#txtCity").val());
-    getWeather($("#txtCity").val());
-    getForecast($("#txtCity").val());
 })
 
 $(document).ready(function () {
