@@ -113,7 +113,16 @@ function saveCity(city) {
 
 $("form").on("submit", function(e) {
     e.preventDefault();
-    saveCity($("#txtCity").val());
+    var city = $("#txtCity").val();
+    if(city != "") {// Don't search if textbox is blank
+        $.ajax({ // Make sure a result is returned for the city
+            url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`,
+            method: 'GET'
+        }).then(function (result) {
+            if (result.cod != 404)
+                saveCity(city);
+        });
+    }
 })
 
 $(document).ready(function () {

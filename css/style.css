@@ -23,6 +23,7 @@ ul {
 
 li:hover {
     background-color: lightblue;
+    cursor: pointer;
 }
 
 #forecast {
