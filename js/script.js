@@ -83,6 +83,7 @@ function getIcon(weather) {
 }
 
 function getCities() {
+    $("#cityList").empty();
     if(localStorage.getItem("cities") != null) {
         var arrCities = JSON.parse(localStorage.getItem("cities"));
         arrCities.forEach(city => {
@@ -99,20 +100,24 @@ function saveCity(city) {
     }
     if (arrCities == null)
         arrCities = [];
+    if(arrCities.includes(city)) {
+        arrCities.splice(arrCities.indexOf(city), 1);
+    }
+    else {
+        $("#cityList").prepend($("<li>").addClass("list-group-item").text(city).on("click", function() {getWeather($(this).text())}));
+    }
     arrCities.unshift(city);
-    console.log(city);
     localStorage.setItem("cities", JSON.stringify(arrCities));
+    getCities();
 }
 
 $("form").on("submit", function(e) {
     e.preventDefault();
-    $("#cityList").prepend($("<li>").addClass("list-group-item").text($("#txtCity").val()).on("click", function() {getWeather($(this).text())}));
     saveCity($("#txtCity").val());
     getWeather($("#txtCity").val());
     getForecast($("#txtCity").val());
 })
 
 $(document).ready(function () {
-    $("#cityList").empty();
     getCities();
 });
