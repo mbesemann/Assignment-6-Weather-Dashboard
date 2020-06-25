@@ -1,0 +1,30 @@
+header h1 {
+    text-align: center;
+    color: white;
+}
+
+header {
+    padding: 20px;
+    background-color: darkslategrey;
+}
+
+#cities {
+    padding-top: 20px;
+    background-color: lightgrey;
+}
+
+input {
+    width: 50px;
+}
+
+ul {
+    padding-bottom: 20px;
+}
+
+li:hover {
+    background-color: lightblue;
+}
+
+#forecast {
+    display: none;
+}
